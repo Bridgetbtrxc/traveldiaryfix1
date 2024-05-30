@@ -2,28 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Itinerary;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Http\Controllers\UserController;
 
 class HomeController extends Controller
 {
-    public function index2()
+    public function LoginView()
     {
-        return view('index2');
+        return view('LoginView');
     }
 
-    public function login()
+    public function CreateAccount()
     {
-        return view('loginsuccessful');
+        return view('CreateAccount');
     }
 
-    public function loginsuccessful($id)
-{
-    // Get all itineraries for the authenticated user
-    $itineraries = Itinerary::where('user_id', $id)->get();
+    public function MainView($id)
+    {
+        // Get the user by ID
+        $user = User::findOrFail($id);
 
-    // Pass the user ID and itineraries to the view
-    return view('loginsuccessful', ['userId' => $id, 'itineraries' => $itineraries]);
-}
+        // Get all itineraries for the authenticated user
+        $itineraries = Itinerary::where('user_id', $id)->get();
+
+        // Pass the user ID, user name, and itineraries to the view
+        return view('MainView', [
+            'userId' => $id,
+            'userName' => $user->name,
+            'itineraries' => $itineraries
+        ]);
+    }
 }
