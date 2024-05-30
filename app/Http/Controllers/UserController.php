@@ -29,14 +29,14 @@ class UserController extends Controller
         }
 
         // Authentication failed, redirect back with input
-        return redirect('/home');
+        return redirect('/');
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
 
-        return redirect('/home');
+        return redirect('/');
     }
     public function index()
     {
