@@ -20,19 +20,4 @@ class HomeController extends Controller
         return view('CreateAccount');
     }
 
-    public function MainView($id)
-    {
-        // Get the user by ID
-        $user = User::findOrFail($id);
-
-        // Get all itineraries for the authenticated user
-        $itineraries = Itinerary::where('user_id', $id)->get();
-
-        // Pass the user ID, user name, and itineraries to the view
-        return view('MainView', [
-            'userId' => $id,
-            'userName' => $user->name,
-            'itineraries' => $itineraries
-        ]);
-    }
 }

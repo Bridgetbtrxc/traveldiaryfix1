@@ -18,6 +18,11 @@ class Itinerary extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
 }
 
 class ItineraryPolicy

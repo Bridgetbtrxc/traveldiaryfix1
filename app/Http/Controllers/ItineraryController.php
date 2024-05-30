@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Expense;
 use App\Models\Itinerary;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreItineraryRequest;
@@ -10,26 +12,7 @@ use Illuminate\Validation\ValidationException;
 
 class ItineraryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function createItinerary(Request $request)
     {
         try {
             // Validate the request data
@@ -57,14 +40,61 @@ class ItineraryController extends Controller
         return redirect()->back()->with('success', 'Itinerary created successfully!');
     }
 
+    public function viewItinerary(Itinerary $itinerary)
+    {
+
+        // Retrieve expenses associated with the itinerary
+        $expenses = Expense::where('itinerary_id', $itinerary->id)->get();
+
+        // Pass the itinerary and expenses to the view
+        return view('ItineraryView', compact('itinerary', 'expenses'));
+    }
+
+    public function listItinerariesByUser($id)
+    {
+        // Get the user by ID
+        $user = User::findOrFail($id);
+
+        // Get all itineraries for the authenticated user
+        $itineraries = Itinerary::where('user_id', $id)->get();
+
+        // Pass the user ID, user name, and itineraries to the view
+        return view('MainView', [
+            'userId' => $id,
+            'userName' => $user->name,
+            'itineraries' => $itineraries
+        ]);
+    }
+
+    public function deleteItinerary(Itinerary $itinerary)
+    {
+        $userId = $itinerary->user_id; // Get the user ID before deletion
+        $itinerary->delete();
+
+        // Redirect to the loginsuccessful route with the user ID
+        return redirect()->route('loginsuccessful', ['id' => $userId])->with('success', 'Itinerary deleted successfully!');
+    }
 
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      */
-    public function show(Itinerary $itinerary)
+    public function index()
     {
-        return view('ItineraryView', compact('itinerary'));
+        //
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+
 
     /**
      * Show the form for editing the specified resource.
@@ -82,15 +112,6 @@ class ItineraryController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Itinerary $itinerary)
-    {
-        $userId = $itinerary->user_id; // Get the user ID before deletion
-        $itinerary->delete();
 
-        // Redirect to the loginsuccessful route with the user ID
-        return redirect()->route('loginsuccessful', ['id' => $userId])->with('success', 'Itinerary deleted successfully!');
-    }
+
 }
