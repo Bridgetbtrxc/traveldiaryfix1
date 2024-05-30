@@ -18,7 +18,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/loginsuccessful/{id}', [ItineraryController::class, 'listItinerariesByUser'])->name('loginsuccessful')->middleware('auth');
 
 Route::post('/itineraries', [ItineraryController::class, 'createItinerary'])->name('itineraries.store')->middleware('auth');
-Route::get('/itineraries/{itinerary}', [ItineraryController::class, 'viewItinerary'])->name('itineraries.show');
+Route::get('/itineraries/{itinerary}', [ItineraryController::class, 'viewItinerary'])->name('itineraries.show')->middleware('auth');
 Route::delete('/itineraries/{itinerary}', [ItineraryController::class, 'deleteItinerary'])->name('itineraries.destroy');
 
 Route::post('/expenses', [ExpenseController::class, 'addExpense'])->name('expenses.store');
