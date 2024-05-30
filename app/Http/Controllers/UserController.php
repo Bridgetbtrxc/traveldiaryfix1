@@ -25,12 +25,15 @@ class UserController extends Controller
         // Attempt to log the user in
         if (Auth::attempt($credentials)) {
             // Redirect to intended destination or a default location
-            return redirect()->intended('/login');
+            $userId = Auth::id();
+            return redirect()->route('loginsuccessful', ['id' => $userId]);
         }
 
         // Authentication failed, redirect back with input
         return redirect('/');
     }
+
+
 
     public function logout(Request $request)
     {
