@@ -11,7 +11,7 @@
         body {
             font-family: 'Arial', sans-serif;
             color: #333;
-            background-image: url('/images/bg.png'); /* Updated URL to use local image */
+            background-image: url('/images/bg.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -19,7 +19,7 @@
 
         .container {
             max-width: 400px;
-            background: rgba(255, 255, 255, 0.8); /* Added opacity for better readability */
+            background: rgba(255, 255, 255, 0.8);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
