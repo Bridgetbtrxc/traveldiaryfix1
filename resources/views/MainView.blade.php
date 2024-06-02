@@ -118,7 +118,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="row mb-4">
-                <div class="col-12" style="background-color: #949EFF;">
+                <div class="col-12 rounded" style="background-color: #949EFF;">
                     <div class="text-white p-4 rounded" style="background-color: transparent;">
                         <h2>Welcome, {{ $userName }}</h2>
                     </div>
