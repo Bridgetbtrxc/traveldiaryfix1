@@ -46,10 +46,11 @@
         }
 
         .navbar {
-            background-color: #949EFF;
-            color: #fff;
-            box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-        }
+    background-color: #949EFF;
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
         .navbar-brand,
         .navbar-nav .nav-link {
@@ -141,6 +142,42 @@
                 </button>
             </div>
 
+             <!-- Modal for adding itinerary -->
+             <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
+             aria-hidden="true">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         <!-- Itinerary creation form -->
+                         <form action="{{ route('itineraries.store') }}" method="POST">
+                             @csrf
+                             <div class="mb-3">
+                                 <label for="title" class="form-label">Title</label>
+                                 <input type="text" class="form-control" id="title" name="title" required>
+                             </div>
+                             <div class="mb-3">
+                                 <label for="description" class="form-label">Description</label>
+                                 <textarea class="form-control" id="description" name="description"></textarea>
+                             </div>
+                             <div class="mb-3">
+                                 <label for="start_date" class="form-label">Start Date</label>
+                                 <input type="date" class="form-control" id="start_date" name="start_date" required>
+                             </div>
+                             <div class="mb-3">
+                                 <label for="end_date" class="form-label">End Date</label>
+                                 <input type="date" class="form-control" id="end_date" name="end_date" required>
+                             </div>
+                             <button type="submit" class="btn btn-primary">Submit</button>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
             <div class="row">
                 @foreach ($itineraries as $itinerary)
                     <div class="col-md-4 mb-4">
@@ -171,11 +208,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('itineraries.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title
+                            <input type="text" class="form-control" id="title" name="title">
+
+                            <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+                        </body>
+                        </html>
