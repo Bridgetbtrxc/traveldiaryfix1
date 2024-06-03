@@ -11,6 +11,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .sidebar {
@@ -24,6 +26,7 @@
             color: #fff;
             transition: width 0.3s;
             box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* add overflow-y */
         }
 
         .sidebar a {
@@ -43,14 +46,16 @@
             margin-left: 250px;
             padding: 20px;
             transition: margin-left 0.3s;
+            width: calc(100% - 250px); /* adjust width */
+            float: right; /* add float */
         }
 
         .navbar {
-    background-color: #949EFF;
-    color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+            background-color: #949EFF;
+            color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
         .navbar-brand,
         .navbar-nav .nav-link {
@@ -81,6 +86,21 @@
             background-color: #7A82CC;
             border-color: #7A82CC;
         }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%; /* adjust width */
+                position: static;
+                height: auto; /* reset height */
+                overflow-y: visible; /* reset overflow-y */
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                float: none; /* reset float */
+            }
+        }
     </style>
 </head>
 
@@ -97,23 +117,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{ $userName }}</a>
                     </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">Logout</button>
-                        </form>
-
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="sidebar rounded" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);">
+ <div class="sidebar rounded" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);">
+    <div class="d-flex flex-column">
         <a href="#"><i class="bi bi-house-door fs-5 me-2"></i>Dashboard</a>
         <a href="{{ route('itineraries.my') }}"><i class="bi bi-journal fs-5 me-2"></i>My Itinerary</a>
         <a href="#"><i class="bi bi-gear fs-5 me-2"></i>Settings</a>
+        <form action="{{ route('logout') }}" method="POST" class="mt-3">
+            @csrf
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </div>
+        </form>
     </div>
+</div>
+
 
     <div class="main-content">
         <div class="container-fluid">
@@ -139,23 +161,33 @@
                 <h2>Your Travelling History</h2>
             </div>
 
-    <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('itineraries.store') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('itineraries.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title">
+            </div>
+        </div>
+    </div>
 
-                            <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-                        </body>
-                        </html>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

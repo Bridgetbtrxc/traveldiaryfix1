@@ -43,50 +43,56 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-between align-items-center mb-0 container mt-5">
-        <!-- Back button -->
-        <a href="{{ route('loginsuccessful', auth()->id()) }}" class="btn btn-secondary me-2">Back</a>
-        <h2 class="m-0">Itineraries List</h2>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItineraryModal">Add
-            Itinerary</button>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-0">
+            <!-- Back button -->
+            <a href="{{ route('loginsuccessful', auth()->id()) }}" class="btn btn-secondary me-2">Back</a>
+            <h2 class="m-0">Itineraries List</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#addItineraryModal">Add
+                Itinerary</button>
+        </div>
     </div>
-        <!-- Modal for adding itinerary -->
-        <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Itinerary creation form -->
-                        <form action="{{ route('itineraries.store') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description"></textarea>
-                            </div>
-                            <div class="mb-3">
+    <!-- Modal for adding itinerary -->
+    <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Itinerary creation form -->
+                    <form action="{{ route('itineraries.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <label for="start_date" class="form-label">Start Date</label>
                                 <input type="date" class="form-control" id="start_date" name="start_date" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="end_date" class="form-label">End Date</label>
                                 <input type="date" class="form-control" id="end_date" name="end_date" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row mt-5">
+    <div class="container mt-5">
+        <div class="row">
             @foreach ($itineraries as $itinerary)
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -106,6 +112,7 @@
                 </div>
             </div>
             @endforeach
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>

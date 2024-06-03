@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            color: #333;
-            background-image: url('/images/bg.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-image: url('/images/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
         .container {
             max-width: 400px;
             background: rgba(255, 255, 255, 0.8);
