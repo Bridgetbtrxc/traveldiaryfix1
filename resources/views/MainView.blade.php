@@ -110,7 +110,7 @@
     </nav>
 
     <div class="sidebar rounded" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);">
-        <a href="#"><i class="bi bi-house-door fs-5 me-2"></i>Home</a>
+        <a href="#"><i class="bi bi-house-door fs-5 me-2"></i>Dashboard</a>
         <a href="{{ route('itineraries.my') }}"><i class="bi bi-journal fs-5 me-2"></i>My Itinerary</a>
         <a href="#"><i class="bi bi-gear fs-5 me-2"></i>Settings</a>
     </div>

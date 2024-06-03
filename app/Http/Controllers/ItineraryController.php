@@ -68,11 +68,10 @@ class ItineraryController extends Controller
 
     public function deleteItinerary(Itinerary $itinerary)
     {
-        $userId = $itinerary->user_id; // Get the user ID before deletion
         $itinerary->delete();
 
-        // Redirect to the loginsuccessful route with the user ID
-        return redirect()->route('loginsuccessful', ['id' => $userId])->with('success', 'Itinerary deleted successfully!');
+        // Redirect back to the itinerary list view
+        return redirect()->route('itineraries.my')->with('success', 'Itinerary deleted successfully!');
     }
 
     public function ItineraryList()
