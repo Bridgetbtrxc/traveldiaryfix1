@@ -75,6 +75,15 @@ class ItineraryController extends Controller
         return redirect()->route('loginsuccessful', ['id' => $userId])->with('success', 'Itinerary deleted successfully!');
     }
 
+    public function ItineraryList()
+    {
+        // Assuming you want to get itineraries for the currently authenticated user
+        $user = auth()->user();
+        $itineraries = $user->itineraries; // Assuming a User hasMany Itinerary relationship
+
+        return view('ItineraryList', compact('itineraries'));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -111,7 +120,4 @@ class ItineraryController extends Controller
     {
         //
     }
-
-
-
 }

@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-5">
          <!-- Back button -->
-         <a href="{{ route('loginsuccessful', $itinerary->user_id) }}" class="btn btn-secondary mb-3" style="background-color: #949EFF; border-color: #949EFF;">Back</a>
+         <a href="{{ route('itineraries.my') }}" class="btn btn-secondary mb-3" style="background-color: #949EFF; border-color: #949EFF;">Back</a>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">

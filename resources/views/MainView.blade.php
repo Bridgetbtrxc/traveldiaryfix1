@@ -111,7 +111,7 @@
 
     <div class="sidebar rounded" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);">
         <a href="#"><i class="bi bi-house-door fs-5 me-2"></i>Home</a>
-        <a href="#"><i class="bi bi-calendar fs-5 me-2"></i>Calendar</a>
+        <a href="{{ route('itineraries.my') }}"><i class="bi bi-journal fs-5 me-2"></i>My Itinerary</a>
         <a href="#"><i class="bi bi-gear fs-5 me-2"></i>Settings</a>
     </div>
 
@@ -136,71 +136,8 @@
             @endif
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2>Your Itineraries</h2>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItineraryModal">
-                    Add Itinerary
-                </button>
+                <h2>Your Travelling History</h2>
             </div>
-
-             <!-- Modal for adding itinerary -->
-             <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
-             aria-hidden="true">
-             <div class="modal-dialog">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h5 class="modal-title" id="addItineraryModalLabel">Add Itinerary</h5>
-                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                     </div>
-                     <div class="modal-body">
-                         <!-- Itinerary creation form -->
-                         <form action="{{ route('itineraries.store') }}" method="POST">
-                             @csrf
-                             <div class="mb-3">
-                                 <label for="title" class="form-label">Title</label>
-                                 <input type="text" class="form-control" id="title" name="title" required>
-                             </div>
-                             <div class="mb-3">
-                                 <label for="description" class="form-label">Description</label>
-                                 <textarea class="form-control" id="description" name="description"></textarea>
-                             </div>
-                             <div class="mb-3">
-                                 <label for="start_date" class="form-label">Start Date</label>
-                                 <input type="date" class="form-control" id="start_date" name="start_date" required>
-                             </div>
-                             <div class="mb-3">
-                                 <label for="end_date" class="form-label">End Date</label>
-                                 <input type="date" class="form-control" id="end_date" name="end_date" required>
-                             </div>
-                             <button type="submit" class="btn btn-primary">Submit</button>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-         </div>
-
-            <div class="row">
-                @foreach ($itineraries as $itinerary)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $itinerary->title }}</h5>
-                                <p class="card-text"><strong>Start Date:</strong> {{ $itinerary->start_date }}</p>
-                                <p class="card-text"><strong>End Date:</strong> {{ $itinerary->end_date }}</p>
-                                <a href="{{ route('itineraries.show', $itinerary->id) }}" class="btn btn-primary">View
-                                    Details</a>
-                                <form action="{{ route('itineraries.destroy', $itinerary->id) }}" method="POST"
-                                    class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
     <div class="modal fade" id="addItineraryModal" tabindex="-1" aria-labelledby="addItineraryModalLabel"
         aria-hidden="true">
