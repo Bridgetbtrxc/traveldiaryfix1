@@ -101,12 +101,12 @@
                         <p class="card-text"><strong>Start Date:</strong> {{ $itinerary->start_date }}</p>
                         <p class="card-text"><strong>End Date:</strong> {{ $itinerary->end_date }}</p>
                         <a href="{{ route('itineraries.show', $itinerary->id) }}" class="btn btn-primary">View
-                            Details</a>
+                            Itinerary</a>
                         <form action="{{ route('itineraries.destroy', $itinerary->id) }}" method="POST"
                             class="d-inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete Itinerary</button>
                         </form>
                     </div>
                 </div>

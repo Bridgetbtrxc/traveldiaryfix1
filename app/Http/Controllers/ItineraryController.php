@@ -83,6 +83,16 @@ class ItineraryController extends Controller
         return view('ItineraryList', compact('itineraries'));
     }
 
+    public function ItineraryDetail(Itinerary $itinerary)
+    {
+
+        // Retrieve the expenses related to the itinerary
+        $expenses = Expense::where('itinerary_id', $itinerary->id)->get();
+
+        return view('ItineraryDetail', compact('itinerary', 'expenses'));
+    }
+
+
     /**
      * Display a listing of the resource.
      */
