@@ -65,13 +65,13 @@
                     <p><strong>Description:</strong> {{ $itinerary->description }}</p>
 
                     <!-- Add more itinerary details as needed -->
-                    <div class="mt-4 mt-lg-5"> <!-- Added mt-lg-5 class for space on larger screens -->
+                    <div class="mt-4 mt-lg-3"> <!-- Added mt-lg-5 class for space on larger screens -->
                         <form method="POST" action="{{ route('itineraries.destroy', $itinerary->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        <a href="{{ route('itineraries.detail', $itinerary->id) }}" class="btn btn-primary mt-3">View Expenses</a>
+                        <a href="{{ route('itineraries.detail', ['id' => $itinerary->id]) }}" class="btn btn-primary mt-3">View Expenses</a>
                     </div>
                 </table>
                 </div>

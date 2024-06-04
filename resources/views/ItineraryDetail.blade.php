@@ -59,6 +59,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Expense Date</th>

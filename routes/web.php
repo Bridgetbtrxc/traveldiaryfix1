@@ -23,5 +23,6 @@ Route::delete('/itineraries/{itinerary}', [ItineraryController::class, 'deleteIt
 Route::get('/my-itinerary', [ItineraryController::class, 'ItineraryList'])->name('itineraries.my')->middleware('auth');
 Route::get('/itinerary-detail/{id}', [ItineraryController::class, 'ItineraryDetail'])->name('itineraries.detail')->middleware('auth');
 
+
 Route::post('/expenses', [ExpenseController::class, 'addExpense'])->name('expenses.store');
 Route::delete('/expenses/{expense}', [ExpenseController::class, 'deleteExpense'])->name('expenses.destroy');
