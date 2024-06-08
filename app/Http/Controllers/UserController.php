@@ -57,8 +57,10 @@ class UserController extends Controller
             return redirect()->route('loginsuccessful', ['id' => $userId]);
         }
 
-        // Authentication failed, redirect back with input
-        return redirect('/');
+        // Authentication failed, redirect back with input and alert
+        return redirect()->back()
+            ->withInput($request->only('email'))
+            ->with('alert', 'Authentication Failed. Please try again!');
     }
 
 

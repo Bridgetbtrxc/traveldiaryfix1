@@ -50,6 +50,14 @@
         <!-- Form Container -->
         <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-5">
             <h2 class="text-2xl font-bold mb-6 text-center">Log In</h2>
+
+            @if (session('alert'))
+            <div class="alert alert-danger">
+                {{ session('alert') }}
+            </div>
+            @endif
+
+
             <form class="w-full max-w-sm" method="POST" action="{{ route('login') }}">
               @csrf
               <div class="mb-6">
@@ -73,6 +81,10 @@
               <a href="/" class="text-sm font-semibold text-blue-500 hover:text-blue-600">Create Account</a>
             </div>
           </div>
+
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
