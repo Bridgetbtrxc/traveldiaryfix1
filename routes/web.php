@@ -10,7 +10,7 @@ use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 
 
 Route::get('/login', [HomeController::class, 'LoginView']);
-Route::get('/', [HomeController::class, 'CreateAccount']);
+Route::get('/', [HomeController::class, 'CreateAccountView']);
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
