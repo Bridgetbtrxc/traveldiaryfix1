@@ -74,16 +74,16 @@ class ItineraryController extends Controller
         return redirect()->route('itineraries.my')->with('success', 'Itinerary deleted successfully!');
     }
 
-    public function ItineraryList()
+    public function itineraryList()
     {
         // Assuming you want to get itineraries for the currently authenticated user
         $user = auth()->user();
-        $itineraries = $user->itineraries; // Assuming a User hasMany Itinerary relationship
+        $itineraries = $user->getItineraries; // Assuming a User hasMany Itinerary relationship
 
-        return view('ItineraryList', compact('itineraries'));
+        return view('ItineraryListView', compact('itineraries'));
     }
 
-    public function ItineraryDetail($id)
+    public function itineraryDetail($id)
 {
     // Retrieve the itinerary based on the ID
     $itinerary = Itinerary::findOrFail($id);
@@ -91,45 +91,7 @@ class ItineraryController extends Controller
     // Retrieve the expenses related to the itinerary
     $expenses = Expense::where('itinerary_id', $itinerary->id)->get();
 
-    return view('ItineraryDetail', compact('itinerary', 'expenses'));
+    return view('ItineraryExpenseView', compact('itinerary', 'expenses'));
 }
 
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Itinerary $itinerary)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateItineraryRequest $request, Itinerary $itinerary)
-    {
-        //
-    }
 }

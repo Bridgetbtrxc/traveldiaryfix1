@@ -10,15 +10,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Itinerary extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'start_date', 'end_date'];
+    protected $fillable = ['id','title', 'description', 'start_date', 'end_date','user_id'];
 
     // Define the relationship with User model
-    public function user()
+    public function getUser()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function expenses()
+    public function getExpenses()
     {
         return $this->hasMany(Expense::class);
     }

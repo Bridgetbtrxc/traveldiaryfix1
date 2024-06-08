@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function CreateAccount()
     {
-        return view('CreateAccount');
+        return view('CreateAccountView');
     }
 
 }

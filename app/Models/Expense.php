@@ -9,9 +9,9 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'amount', 'expense_date', 'itinerary_id', 'user_id'];
+    protected $fillable = ['id','title', 'description', 'amount', 'expense_date', 'itinerary_id', 'user_id'];
 
-    public function itinerary()
+    public function getItinerary()
     {
         return $this->belongsTo(Itinerary::class);
     }
