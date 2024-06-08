@@ -22,7 +22,10 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('alert', 'Validation failed. Please check your inputs.');
         }
 
         $user = User::create([

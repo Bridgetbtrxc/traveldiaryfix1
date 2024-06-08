@@ -106,6 +106,11 @@
         <div class="text-center mt-3">
             <small><a href="/login">Have an account already? Login</a></small>
         </div>
+        @if (session('alert'))
+    <div class="alert alert-warning">
+        {{ session('alert') }}
+    </div>
+        @endif
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
