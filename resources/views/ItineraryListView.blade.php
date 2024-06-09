@@ -106,8 +106,8 @@
                         <h5 class="card-title">{{ $itinerary->title }}</h5>
                         <p class="card-text"><strong>Start Date:</strong> {{ $itinerary->start_date }}</p>
                         <p class="card-text"><strong>End Date:</strong> {{ $itinerary->end_date }}</p>
-                        <a href="{{ route('itineraries.show', $itinerary->id) }}" class="btn btn-primary">View
-                            Itinerary</a>
+                        <a href="{{ route('itineraries.detail', ['id' => $itinerary->id]) }}" class="btn btn-primary">View
+                            Expenses </a>
                         <form action="{{ route('itineraries.destroy', $itinerary->id) }}" method="POST"
                             class="d-inline-block">
                             @csrf
