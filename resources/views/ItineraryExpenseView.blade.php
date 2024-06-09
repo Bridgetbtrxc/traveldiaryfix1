@@ -78,12 +78,8 @@
                                 <td>{{ $expense->expense_date }}</td>
                                 <td>Rp {{ $expense->amount }}</td>
                                 <td>
-                                    <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteExpenseModal" data-id="{{ $expense->id }}">Delete</button>
                                 </td>
                             </tr>
                             @php
@@ -102,6 +98,7 @@
         </div>
     </div>
 
+    <!-- Add Expense Modal -->
     <div class="modal fade {{ $errors->any() ? 'show d-block' : '' }}" id="addExpenseModal" tabindex="-1"
         aria-labelledby="addExpenseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -164,6 +161,30 @@
         </div>
     </div>
 
+    <!-- Delete Expense Modal -->
+    <div class="modal fade" id="deleteExpenseModal" tabindex="-1" aria-labelledby="deleteExpenseModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteExpenseModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this expense?
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteExpenseForm" method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @if ($errors->any())
     <script>
@@ -178,6 +199,16 @@
         successModal.show();
     </script>
     @endif
+
+    <script>
+        var deleteExpenseModal = document.getElementById('deleteExpenseModal');
+        deleteExpenseModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var expenseId = button.getAttribute('data-id');
+            var form = document.getElementById('deleteExpenseForm');
+            form.action = '/expenses/' + expenseId;
+        });
+    </script>
 </body>
 
 </html>
